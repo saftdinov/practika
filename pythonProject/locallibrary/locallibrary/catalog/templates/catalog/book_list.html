@@ -1,27 +1,17 @@
 {% extends "base_generic.html" %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-<a href="{{ book.get_absolute_url }}">{{ book.title }}</a> ({{book.author}})
 
-    {% block content %}
-      <h1>Book List</h1>
-      {% if book_list %}
-        <ul>
-          {% for book in book_list %}
-            <li><!-- code here get information from each book item --></li>
-          {% empty %}
-            <p>There are no books in the library.</p>
-          {% endfor %}
-        </ul>
-      {% else %}
-        <p>There are no books in the library.</p>
-      {% endif %}
-    {% endblock %}
+{% block content %}
+  <h1>Список книг</h1>
 
-</body>
-</html>
+  {% if book_list %}
+    <ul>
+      {% for book in book_list %}
+        <li>
+          <a href="{% url 'book-detail' book.pk %}">{{ book.title }}</a> ({{ book.author }})
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>Нет книг в базе.</p>
+  {% endif %}
+{% endblock %}
