@@ -9,6 +9,9 @@ from django.contrib.auth.decorators import permission_required
 from django.shortcuts import get_object_or_404
 from django.http import HttpResponseRedirect
 from django.urls import reverse, reverse_lazy
+from django.contrib.auth.models import User
+
+
 
 def index(request):
     num_books = Book.objects.all().count()
@@ -97,3 +100,4 @@ class BookUpdate(UpdateView):
 class BookDelete(DeleteView):
     model = Book
     success_url = reverse_lazy('books')
+
